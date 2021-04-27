@@ -1,10 +1,11 @@
 package spring.tutorial.model;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "usr")
-public class UserModel {
+public class UserModel implements Serializable {
 	@Id
 	private String userId;
 	private String password;
