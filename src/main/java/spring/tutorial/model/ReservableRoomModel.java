@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name="reservable_room")
+@Table(name = "reservable_room")
 public class ReservableRoomModel implements Serializable {
 	@EmbeddedId
 	private ReservableRoomIdModel reservableRoomId;
@@ -22,7 +22,7 @@ public class ReservableRoomModel implements Serializable {
 	}
 
 	public ReservableRoomIdModel getReservableRoomId() {
-		return reservableRoomId;
+		return this.reservableRoomId;
 	}
 
 	public void setReservableRoomId(ReservableRoomIdModel reservableRoomId) {
@@ -30,7 +30,7 @@ public class ReservableRoomModel implements Serializable {
 	}
 
 	public MeetingRoomModel getMeetingRoom() {
-		return meetingRoom;
+		return this.meetingRoom;
 	}
 
 	public void setMeetingRoom(MeetingRoomModel meetingRoom) {
