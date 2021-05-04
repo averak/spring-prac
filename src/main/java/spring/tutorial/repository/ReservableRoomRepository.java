@@ -5,6 +5,7 @@ import java.util.List;
 
 import spring.tutorial.model.ReservableRoomModel;
 import spring.tutorial.model.ReservableRoomIdModel;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ReservableRoomRepository extends JpaRepository<ReservableRoomModel, ReservableRoomIdModel> {
