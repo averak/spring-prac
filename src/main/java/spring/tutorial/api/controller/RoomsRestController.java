@@ -1,4 +1,4 @@
-package spring.tutorial.controller;
+package spring.tutorial.api.controller;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -8,16 +8,14 @@ import spring.tutorial.service.RoomService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
 @RequiredArgsConstructor
-@RequestMapping("rooms")
-public class RoomsController {
+@RestController
+@RequestMapping(path = "/rooms", produces = MediaType.APPLICATION_JSON_VALUE)
+public class RoomsRestController {
 	private final RoomService roomService;
 
 	@RequestMapping(value = "{date}", method = RequestMethod.GET)
@@ -32,5 +30,12 @@ public class RoomsController {
 		LocalDate today = LocalDate.now();
 		model.addAttribute("date", today);
 		return listRooms(today, model);
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	public List<ReservableRoomModel> GetRooms() {
+		LocalDate today = LocalDate.now();
+		List<ReservableRoomModel> rooms = roomService.findReservableRooms(today);
+		return rooms;
 	}
 }
