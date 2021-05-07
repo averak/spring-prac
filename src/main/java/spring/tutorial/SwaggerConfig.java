@@ -6,6 +6,7 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Tag;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -19,32 +20,20 @@ public class SwaggerConfig {
 
     @Bean
     public Docket swaggerSpringMvcPlugin() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .useDefaultResponseMessages(false)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.regex("/v1.*"))
-                .build()
-                .apiInfo(apiInfo());
+        return new Docket(DocumentationType.SWAGGER_2) //
+                .useDefaultResponseMessages(false) //
+                .select() //
+                .apis(RequestHandlerSelectors.any()) //
+                .build() //
+                .apiInfo(apiInfo()) //
+                .tags( //
+                        new Tag("Meeting Room", "会議室"));
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("Spring API")
-                .description("Description.")
-                .version("0.0.1")
-                .contact(new Contact("name", "URL", "email"))
-                .license("license")
-                .licenseUrl("license URL")
-                .termsOfServiceUrl("")
-                .build();
-    }
-
-    @Bean
-    public UiConfiguration uiConfig() {
-        return UiConfigurationBuilder.builder()
-                .displayRequestDuration(true)
-                .validatorUrl("")
+        return new ApiInfoBuilder() //
+                .title("Spring API") //
+                .description("Description.") //
                 .build();
     }
 }
